@@ -5,10 +5,10 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="description">
         <meta content="" name="keywords">
-        <title>Placas UMSNH | Vehículos</title>
+        <title>Placas UMSNH | Inicio</title>
 
-        <link href="#" rel="icon">
-        <link href="#" rel="apple-touch-icon">
+        <link href="./assets/img/logoGobMichFondoRosa.png" rel="icon">
+        <link href="./assets/img/logoGobMichFondoRosa.png" rel="apple-touch-icon">
 
         <!-- Google Fonts -->
         <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -45,15 +45,84 @@
 
         <main id="main" class="main">
             <div class="pagetitle">
-                <h1> {{ $pagetitle ?? ($title ?? null) }}</h1>
-                <nav class="mt-2"><ol class="breadcrumb">{{ $nav ?? null}}</ol></nav>
-              </div>
-            {{ $slot }}
+                <h1>Inicio</h1>
+                <nav class="mt-2">
+                    <ol class="breadcrumb"><ol class="breadcrumb">
+                        <li class="breadcrumb-item active"><a href="/">Inicio</a></li>
+                    </ol></ol>
+                </nav>
+            </div>
+
+
+            <section class="section">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Opciones</h5>
+                            <div class="row mb-3">
+                                <a class="col-lg-3" href="/views/vehiculos/create.php">
+                                    <button type="button" class="btn btn-primary rounded-pill">
+                                        Registrar vehículo
+                                    </button>
+                                </a>
+
+                                <a class="col-lg-3" href="/views/personas/create.php">
+                                    <button type="button" class="btn btn-primary rounded-pill">
+                                        Registrar persona
+                                    </button>
+                                </a>
+                                <div class="col-lg-1"></div>
+                                <a class="col-lg-3" href="/views/placas/create.php">
+                                    <button type="button" class="btn btn-primary rounded-pill">
+                                        Registrar placa
+                                    </button>
+                                </a>
+                            </div>
+                                
+                            <hr>
+                            
+                            <div class="row mt-3">
+
+                                <a class="col-lg-3" href="/views/vehiculos/create.php">
+                                    <button type="button" class="btn btn-success rounded-pill">
+                                        Pago de placa
+                                    </button>
+                                </a>
+
+                                <a class="col-lg-4" href="/views/personas/create.php">
+                                    <button type="button" class="btn btn-warning rounded-pill">
+                                        Asignar persona a vehículo
+                                    </button>
+                                </a>
+                                <a class="col-lg-4" href="/views/placas/create.php">
+                                    <button type="button" class="btn btn-warning rounded-pill">
+                                        Asignar placa a vehículo
+                                    </button>
+                                </a>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Listado</h5>
+
+                            
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+
         </main>
 
 
-         <!-- ======= Footer ======= -->
-         <footer id="footer" class="footer">
+        <!-- ======= Footer ======= -->
+        <footer id="footer" class="footer">
             <div class="copyright">
                 &copy; Copyright <strong><span>Universidad Michoacana de San Nicolás de Hidalgo</span></strong>. Facultad de Ciencias Físico - Matemáticas.
             </div>

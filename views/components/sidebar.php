@@ -2,7 +2,7 @@
   <ul class="sidebar-nav" id="sidebar-nav">
     
     <li class="nav-item">
-      <a class="nav-link collapsed" href="#">
+      <a class="nav-link collapsed" href="/">
         <i class="bi bi-house"></i>
         <span>Inicio</span>
       </a>
