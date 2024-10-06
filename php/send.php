@@ -19,9 +19,10 @@
 		}
 
         public function registrarVehiculo($data) {
-            $sql = "INSERT INTO sp_vehiculos (niv, numMotor, numChasis, tipo, clase, color, modelo, marca, numPuertas,
+            $tipo_id = mysqli_query($this->cnx, 'SELECT id FROM sp_cat_tipo_vehiculo WHERE descripcion ='.$data['tipo']);
+            $sql = "INSERT INTO sp_vehiculos (niv, numMotor, numChasis, tipo_id ,tipo, clase, color, modelo, marca, numPuertas,
                                             combustible, cilindros, ejes) 
-                    VALUES ('".$data['niv']."','".$data['numMotor']."','".$data['numChasis']."','".$data['tipo']."', 
+                    VALUES ('".$data['niv']."','".$data['numMotor']."','".$data['numChasis']."','".$tipo_id. "','".$data['tipo']."', 
                             '".$data['clase']."','".$data['color']."','".$data['modelo']."','".$data['marca']."', 
                             '".$data['numPuertas']."','".$data['combustible']."','".$data['cilindros']."','".$data['ejes']."'
                     )";
@@ -34,9 +35,9 @@
         }
 
         public function registrarPersona($data) {
-            $sql = "INSERT INTO sp_vehiculos (nombre, primerApellido, segundoApellido, curp, direccion, fechaNacimiento, numCelular) 
-                    VALUES ('".$data['nombre']."','".$data['primerApellido']."','".$data['segundoApellido']."','".$data['curp']."',
-                            '".$data['direccion']."','".$data['fechaNacimiento']."','".$data['numCelular']."'
+            $sql = "INSERT INTO sp_vehiculos (curp, nombre, primerApellido, segundoApellido, fechaNacimiento, sexo, direccion, numCelular) 
+                    VALUES ('".$data['curp']."','".$data['nombre']."','".$data['primerApellido']."','".$data['segundoApellido']."','"
+                            .$data['fechaNacimiento']."','".$data['sexo']."','".$data['direccion']."','".$data['numCelular']."'
                     )";
             
             if (mysqli_query($this->cnx, $sql)) {
