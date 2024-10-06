@@ -1,30 +1,17 @@
 <?php 
     require_once($_SERVER['DOCUMENT_ROOT'].'/php/utils.php');
     include ($_SERVER['DOCUMENT_ROOT'].'/php/consulta.php');
+    include ($_SERVER['DOCUMENT_ROOT'].'/php/send.php');
     $cnx = new placas();
+    $sendData = new send();
 
     if(isset($_POST['submit'])){
-        $niv = $_POST['niv'];
-        $numMotor = $_POST['numMotor'];
-        $numChasis = $_POST['numChasis'];
-        $tipo = $_POST['tipo'];
-        $clase = $_POST['clase'];
-        $color = $_POST['color'];
-        $modelo = $_POST['modelo'];
-        $marca = $_POST['marca'];
-        $numPuertas = $_POST['numPuertas'];
-        $combustible = $_POST['combustible'];
-        $cilindros = $_POST['cilindros'];
-        $ejes = $_POST['ejes'];
+        $funcion = $_POST['funcion'];
 
-        $sql = "INSERT INTO sp_vehiculos (niv, numMotor, numChasis, tipo, clase, color, modelo, marca, numPuertas, combustible, cilindros, ejes) VALUES
-                ('$niv', '$numMotor', '$numChasis', '$tipo', '$clase', '$color', '$modelo', '$marca', '$numPuertas', '$combustible', '$cilindros', '$ejes')";
-        $query = mysqli_query($cnx->getConnection(), $sql);
-        
-        if($query){
-            echo "<script>alert('Vehículo registrado')</script>";
-        } else{
-            echo "<script>alert('Ha ocurrido un error". mysqli_error($cnx) ."')</script>";
+        if (method_exists($sendData, $funcion)) {
+            $response = call_user_func([$sendData, $funcion], $_POST);
+        } else {
+            echo "<script>alert(No existe la función'$funcion');</script>";
         }
     }
 ?>
@@ -94,6 +81,8 @@
                             <h5 class="card-title">Dar te alta nuevo vehículo</h5>
                             
                             <form method="POST" class="row g-3 needs-validation" novalidate>
+                                <input type="hidden" name="funcion" value="registrarVehiculo">
+
                                 <div class="col-md-4">
                                     <label for="niv" class="form-label">NIV</label>
                                     <input type="text" class="form-control" id="niv-input" name="niv" maxleng="25" required>
