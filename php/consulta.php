@@ -40,6 +40,58 @@
 			$res = mysqli_query($this->cnx, $sql);
 			return $res;
 		}
+
+		<table>
+		    <thead>
+		        <tr>
+		            <th scope="col">#</th>
+		            <th scope="col">curp</th>
+		            <th scope="col">Nombre</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <?php
+		        $personas = $cnx->getPersonas();
+		        $i = 0;
+		        while($row = mysqli_fetch_object($personas)) {
+		            $i++;
+		            echo "
+		            <tr>
+		                <td>" . $i . "</td>
+		                <td>" . $row->curp . "</td>
+		                <td>" . $row->nombre . " " . $row->primerApellido . " " . $row->segundoApellido . "</td>
+		            </tr>";
+		        }
+		        ?>
+		    </tbody>
+		</table>
+
+		<table>
+		    <thead>
+		        <tr>
+		            <th scope="col">#</th>
+		            <th scope="col">niv</th>
+		            <th scope="col">marca</th>
+			    <th scope="col">modelo</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <?php
+		        $personas = $cnx->getVehiculos();
+		        $i = 0;
+		        while($row = mysqli_fetch_object($vehiculos)) {
+		            $i++;
+		            echo "
+		            <tr>
+		                <td>" . $i . "</td>
+		                <td>" . $row->niv . "</td>
+		  		<td>" . $row->marca . "</td>
+      				<td>" . $row->modelo . "</td>
+		            </tr>";
+		        }
+		        ?>
+		    </tbody>
+		</table>
 	}
 
 ?>
