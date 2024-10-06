@@ -35,17 +35,36 @@
         }
 
         public function registrarPersona($data) {
-            $sql = "INSERT INTO sp_vehiculos (curp, nombre, primerApellido, segundoApellido, fechaNacimiento, sexo, direccion, numCelular) 
+            $sql = "INSERT INTO sp_personas (curp, nombre, primerApellido, segundoApellido, fechaNacimiento, sexo, direccion, numCelular) 
                     VALUES ('".$data['curp']."','".$data['nombre']."','".$data['primerApellido']."','".$data['segundoApellido']."','"
                             .$data['fechaNacimiento']."','".$data['sexo']."','".$data['direccion']."','".$data['numCelular']."'
                     )";
-            
-            if (mysqli_query($this->cnx, $sql)) {
-                return "Persona registrada con éxito";
-            } else {
-                return "Error al registrar a la persona: " . mysqli_error($this->cnx);
+        
+            $mensaje = ""; // Inicializar mensaje vacío
+        
+            try {
+                // Ejecutar la consulta
+                if (mysqli_query($this->cnx, $sql)) {
+                    $mensaje = 'Persona registrada con éxito';
+                }
+            } catch (mysqli_sql_exception $e) {
+                // Verificar si el error es de clave duplicada
+                if ($e->getCode() == 1062) {
+                    $mensaje = 'Error: La CURP ya está registrada.';
+                } else {
+                    // Mostrar mensaje de error genérico
+                    $mensaje = 'Error al registrar a la persona: ' . $e->getMessage();
+                }
             }
+        
+            // Mostrar el mensaje y redirigir al índice de personas
+            echo "<script>
+                    alert('$mensaje');
+                    window.location.href = 'index.php';
+                  </script>";
         }
+        
+        
 	}
 
 ?>

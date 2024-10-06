@@ -1,3 +1,9 @@
+<?php 
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/utils.php');
+    include ($_SERVER['DOCUMENT_ROOT'].'/php/consulta.php');
+    $cnx = new placas();
+
+?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -54,25 +60,18 @@
                 </nav>
             </div>
 
-
             <section class="section">
                 <div class="row">
+
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Opciones</h5>
                             <div class="row">
-                                <a class="col-lg-2" href="/views/personas/create.php">
+                                <a class="col-lg-3" href="/views/personas/create.php">
                                     <button type="button" class="btn btn-primary rounded-pill">
                                         Registrar persona
                                     </button>
                                 </a>
-                                <button type="button" class="btn btn-primary rounded-pill col-lg-2">Dar de alta personas</button>
-                                <div class="col-lg-1"></div>
-                                <button type="button" class="btn btn-secondary rounded-pill col-lg-2">Pago de placa</button>
-                                <div class="col-lg-1"></div>
-                                <button type="button" class="btn btn-success rounded-pill col-lg-2">Asignar placas a un vehículo</button>
-                                <div class="col-lg-1"></div>
-                                <button type="button" class="btn btn-danger rounded-pill col-lg-2">Danger</button>
                             </div>
 
                         </div>
@@ -81,8 +80,31 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Listado</h5>
-
-                            
+                            <div>
+                                <table class="table datatable">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">curp</th>
+                                            <th scope="col">Nombre</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $personas = $cnx->getPersonas();
+                                            $i = 0;
+                                            while($row=mysqli_fetch_object($personas)){
+                                                $i++;
+                                                echo "
+                                                <tr>
+                                                    <td>". $i ."</td>
+                                                    <td>". $row->curp ."</td>
+                                                    <td>".$row->nombre." ".$row->primerApellido." ".$row->segundoApellido."</td>";
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 

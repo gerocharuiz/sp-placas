@@ -7,7 +7,6 @@
 
     if(isset($_POST['submit'])){
         $funcion = $_POST['funcion'];
-
         if (method_exists($sendData, $funcion)) {
             $response = call_user_func([$sendData, $funcion], $_POST);
         } else {
@@ -85,7 +84,7 @@
 
                                 <div class="col-md-4">
                                     <label for="curp" class="form-label">CURP</label>
-                                    <input type="text" class="form-control" id="niv-input" name="niv" minlength="18th" maxlength="18" required>
+                                    <input type="text" class="form-control" name="curp" minlength="18th" maxlength="18" required>
                                     <div class="invalid-feedback">
                                         Por favor ingrese la CURP.
                                     </div>
